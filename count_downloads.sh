@@ -20,8 +20,8 @@ MIRROR_FILE="$(cd "$(dirname "$0")" && pwd)/count_mirror.txt"
 
 GH_COUNT=0
 
-if [ "$OWNER" = "JoeCmr" ]; then
-    echo "⚠ GitHub owner 未确认，用法：./count_downloads.sh <owner>"
+if [ -z "$OWNER" ]; then
+    echo "⚠ 用法：./count_downloads.sh <owner>"
 else
     API="https://api.github.com/repos/${OWNER}/${REPO}/releases"
     RAW="$(curl -sL --max-time 15 "$API" 2>/dev/null || true)"
